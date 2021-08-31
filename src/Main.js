@@ -4,6 +4,9 @@ import github from "./img/github.svg";
 import linkedin from "./img/linkedin.svg";
 import cff from "./img/cff3.png";
 import flixie from "./img/flixie_match.png";
+import modpal from "./img/modpal.png";
+import LinkedInIcon from "@material-ui/icons/LinkedIn";
+import EmailIcon from "@material-ui/icons/Email";
 
 const Main = () => {
   return (
@@ -12,14 +15,16 @@ const Main = () => {
         <div class="page-container">
           <div class="typewriter">
             <h1>
-              <a href="/">&gt; Rebecca Chin</a>
+              <a href="/">&gt; Rebecca</a>
             </h1>
           </div>
           <div class="short-bio">
-            <p>Hi. 👋 I'm a Year 2 Computer Science Undergraduate @ NUS.</p>
             <p>
-              Check out my <a href="#projects">projects</a> and{" "}
-              <a href="">blog</a> (coming soon).
+              Hi. 👋 I'm a Year 2 Computer Science Undergraduate @ NUS.
+            </p>
+            <p>
+              I love making clean and efficient solutions to challenging
+              problems.
             </p>
           </div>
 
@@ -34,13 +39,6 @@ const Main = () => {
             <a href="https://github.com/rebeccacxy/" aria-label="GitHub">
               <img src={github} class="socials button" alt="GitHub Profile" />
             </a>
-            {/* <a href="" aria-label="dev.to">
-              <img
-                src="https://d2fltix0v2e0sb.cloudfront.net/dev-badge.svg"
-                class="socials button"
-                alt="DEV Community Profile"
-              />
-            </a> */}
           </div>
 
           <div class="about">
@@ -66,7 +64,9 @@ const Main = () => {
               <div class="statement">
                 <p class="input">rebecca.contact</p>
                 <p class="return">
-                  <a href="mailto:rebeccacxy@gmail.com">rebeccacxy@gmail.com</a>
+                  <a href="mailto:rebeccacxy@gmail.com">
+                    <EmailIcon fontSize="small" /> rebeccachinxy@gmail.com
+                  </a>
                 </p>
               </div>
               <div class="statement">
@@ -84,19 +84,23 @@ const Main = () => {
               <div class="statement">
                 <p class="input">rebecca.skills</p>
                 <p class="return">
-                  [java, javascript, python, c++, react.js, css, figma]
+                  [java, js, python, c++, react / react native, firebase, html,
+                  css]
                 </p>
               </div>
               <div class="statement">
                 <p class="input">rebecca.socials</p>
                 <p class="return">
-                  <a href="https://www.linkedin.com/in/rcxy/">linkedin</a>
+                  <a href="https://www.linkedin.com/in/rcxy/">
+                    <LinkedInIcon /> linkedin
+                  </a>
                 </p>
               </div>
               <div class="statement">
                 <p class="input">rebecca.interests</p>
                 <p class="return">
-                  [computer security, machine learning, anime, boba, coffee ❤️]
+                  [frontend web & app dev, computer security, machine learning,
+                  coffee ❤️]
                 </p>
               </div>
               <div class="statement" id="bottom">
@@ -125,7 +129,7 @@ const Main = () => {
               </div>
               <div class="project-links">
                 <a
-                  href="https://github.com/rebeccacxy.github.io"
+                  href="https://github.com/rebeccacxy/rebeccacxy.github.io"
                   class="link button"
                 >
                   <i class="fab fa-github"></i> Repository
@@ -185,6 +189,7 @@ const Main = () => {
                 </a>
               </div>
             </div>
+            <img src={modpal} class="modpal-img" alt="Project Img" />
 
             <div class="project-card">
               <h3 class="project-title">Flixie</h3>

@@ -380,6 +380,7 @@ a {
 
 .short-bio p {
   padding-bottom: 5px;
+  font-size: 18px;
 }
 
 .short-bio p a {
@@ -494,7 +495,7 @@ a {
 }
 
 .return a {
-  color: #47C2FF;
+  color: #6acafa;
   text-decoration: none;
 }
 
@@ -548,6 +549,16 @@ a {
   /* margin-left: 550px; */
   margin-top: -355px;
 }
+
+.modpal-img {
+  width: 600px;
+  position: "absolute";
+  margin-left: auto;
+  margin-right: -40px;
+  margin-left: 460px;
+  margin-top: -380px;
+}
+
 
 .flixie-img {
   width: 260px;
