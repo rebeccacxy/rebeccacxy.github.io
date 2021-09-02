@@ -5,6 +5,7 @@ import linkedin from "./img/linkedin.svg";
 import cff from "./img/cff3.png";
 import flixie from "./img/flixie_match.png";
 import modpal from "./img/modpal.png";
+import cubey from "./img/cubey.png";
 import LinkedInIcon from "@material-ui/icons/LinkedIn";
 import EmailIcon from "@material-ui/icons/Email";
 
@@ -156,6 +157,8 @@ const Main = () => {
                 <a
                   href="https://github.com/rebeccacxy/ML_Cashflow_Forecasting"
                   class="link button"
+                  target="_blank"
+                  rel="noreferrer"
                 >
                   <i class="fab fa-github"></i> Repository
                 </a>
@@ -178,12 +181,16 @@ const Main = () => {
                 <a
                   href="https://github.com/rebeccacxy/modpal-planner"
                   class="link button"
+                  target="_blank"
+                  rel="noreferrer"
                 >
                   <i class="fab fa-github"></i> Repository
                 </a>
                 <a
                   href="https://modpal-planner.web.app/"
                   class="live-demo button"
+                  target="_blank"
+                  rel="noreferrer"
                 >
                   Live Site <i class="fas fa-external-link-alt"></i>
                 </a>
@@ -205,12 +212,45 @@ const Main = () => {
                 <a
                   href="https://github.com/rebeccacxy/flixie"
                   class="link button"
+                  target="_blank"
+                  rel="noreferrer"
                 >
                   <i class="fab fa-github"></i> Repository
                 </a>
               </div>
             </div>
             <img src={flixie} class="flixie-img" alt="Project Img" />
+
+            <div class="project-card">
+              <h3 class="project-title">Cubey</h3>
+              <p class="project-description">
+                An online Rubik's cube solver.
+              </p>
+              <div class="project-skills">
+                <span class="project-skill">html</span>
+                <span class="project-skill">css</span>
+                <span class="project-skill">js</span>
+              </div>
+              <div class="project-links">
+                <a
+                  href="https://github.com/rebeccacxy/cubey"
+                  class="link button"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <i class="fab fa-github"></i> Repository
+                </a>
+                <a
+                  href="https://rebeccacxy.github.io/cubey/"
+                  class="live-demo button"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Live Site <i class="fas fa-external-link-alt"></i>
+                </a>
+              </div>
+            </div>
+            <img src={cubey} class="cubey-img" alt="Project Img" />
 
             <div class="project-card">
               <h3 class="project-title">News sentiment analysis</h3>
@@ -225,6 +265,8 @@ const Main = () => {
                 <a
                   href="https://github.com/rebeccacxy/news-sentiment-analysis"
                   class="link button"
+                  target="_blank"
+                  rel="noreferrer"
                 >
                   <i class="fab fa-github"></i> Repository
                 </a>

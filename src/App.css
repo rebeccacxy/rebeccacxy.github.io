@@ -546,7 +546,7 @@ a {
   position: "absolute";
   margin-left: auto;
   margin-right: -40px;
-  /* margin-left: 550px; */
+  margin-left: 522px;
   margin-top: -355px;
 }
 
@@ -557,17 +557,28 @@ a {
   margin-right: -40px;
   margin-left: 460px;
   margin-top: -380px;
+  margin-bottom: -40px;
 }
 
 
 .flixie-img {
-  width: 260px;
+  width: 250px;
   position: "absolute";
   margin-left: auto;
   margin-right: 0px;
-  margin-top: -370px;
+  margin-top: -380px;
   z-index: 0;
-  margin-bottom: -65px;
+  margin-bottom: -30px;
+}
+
+.cubey-img {
+  width: 600px;
+  position: "absolute";
+  margin-left: auto;
+  margin-right: -40px;
+  margin-left: 460px;
+  margin-top: -380px;
+  margin-bottom: -40px;
 }
 
 .project-description a {
