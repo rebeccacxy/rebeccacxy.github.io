@@ -10,12 +10,12 @@ body {
   font-family: 'Noto Sans', sans-serif;
   font-weight: 400;
   font-size: 16px;
-  color: #151515;
+  /* color: #151515; */
   background-color: #EFF2F1;
 }
 
 h1, h2 {
-  font-family: 'Fira Mono', monospace;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
   font-weight: 500;
   color: rgba(64, 32, 64, 0.75);
 }
@@ -344,9 +344,8 @@ a {
   letter-spacing: 2px;
   white-space: nowrap;
   font-size: 2.5em;
-  border-right: 0.8em solid;
-  box-sizing: border-box;
-  animation: typing 3s steps(11, end), blink 1s step-end infinite;
+  border-right: 2px solid;
+  animation: typing 2s steps(8, end), flash 0.5s none infinite alternate;
 }
 
 .typewriter h1 a {
@@ -362,11 +361,11 @@ a {
   }
 }
 
-@keyframes blink {
+@keyframes flash {
   from, to {
-      border-color: rgba(146, 55, 77, 0.5);
+      border-color: black;
   }
-  50% {
+  100% {
       border-color: transparent;
   }
 }
@@ -374,6 +373,7 @@ a {
 /* Short Bio */
 
 .short-bio {
+  max-width: 680px;
   margin: 20px auto;
   font-size: 18px;
 }
@@ -398,7 +398,7 @@ a {
 
 .social-links {
   display: flex;
-  width: calc(20% - 20px)
+  width: calc(20% - 60px)
   /* margin: 20px auto; */
 }
 
@@ -528,6 +528,7 @@ a {
 }
 
 .project-card h3 {
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif !important;
   margin: 30px auto;
   margin-bottom: 20px;
   font-size: 21px;
@@ -597,15 +598,31 @@ a {
   margin: 10px auto;
 }
 
-.project-skills span {
+/* .project-skills span {
   background-color: rgba(230, 224, 254, 0.842);
-  /* border: 2px solid rgba(165, 180, 252); */
   border-radius: 8px;
   margin: auto 8px 10px auto;
   padding: 6px;
   padding-left: 8px;
   padding-right: 8px;
   display: inline-block;
+} */
+
+.project-skills span {
+    color: #0f8994 !important;
+    font-weight: 700;
+    font-size: 0.9em;
+    letter-spacing: 0.05em;
+    margin: auto 8px 10px auto;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    padding-left: 2px;
+    padding-right: 2px;
+    display: inline-block;
+}
+
+.project-skills span:not(:last-child) {
+  margin-right: 10px;
 }
 
 .project-links {
@@ -699,7 +716,7 @@ a {
 @media only screen and (min-width: 768px) {
   .typewriter h1 {
       font-size: 3.2em;
-      border-right: 0.75em solid #4A2040;
+      border-right: 3px solid #000000;
   }
   .section-title h2 {
       font-size: 2.8em;
