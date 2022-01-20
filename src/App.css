@@ -345,7 +345,7 @@ a {
   white-space: nowrap;
   font-size: 2.5em;
   border-right: 2px solid;
-  animation: typing 2s steps(8, end), flash 0.5s none infinite alternate;
+  animation: typing 1.5s steps(12, end), flash 0.6s none infinite alternate;
 }
 
 .typewriter h1 a {
@@ -641,9 +641,9 @@ a {
 }
 
 .project-links .live-demo {
-  color: #F8F8F8;
-  background-color: rgba(64, 32, 64, 0.75);
-  border: 1px solid rgba(64, 32, 64, 0.25);
+  color: rgba(64, 32, 64, 0.75);
+  /* background-color: rgba(64, 32, 64, 0.75); */
+  /* border: 1px solid rgba(64, 32, 64, 0.25); */
 }
 
 .project-links .link {

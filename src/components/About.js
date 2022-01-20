@@ -2,6 +2,7 @@ import React from "react";
 import "../App.css";
 import LinkedInIcon from "@material-ui/icons/LinkedIn";
 import EmailIcon from "@material-ui/icons/Email";
+import Resume from "../assets/Rebecca_Resume_Jan-2022.pdf"
 
 const About = () => {
   return (
@@ -21,7 +22,7 @@ const About = () => {
         </div>
         <div class="statement">
           <p class="input">rebecca.education</p>
-          <p class="return">bachelor of computing, computer science @ nus</p>
+          <p class="return">bachelor of computing, computer science</p>
         </div>
         <div class="statement">
           <p class="input">rebecca.contact</p>
@@ -35,7 +36,7 @@ const About = () => {
           <p class="input">rebecca.resume</p>
           <p class="return">
             <a
-              href="https://drive.google.com/file/d/1wFfCQXys6VkBxvtvOf2k2FyczZVfKdik/view?usp=sharing"
+              href={Resume}
               target="_blank"
               rel="noreferrer"
             >
@@ -43,12 +44,6 @@ const About = () => {
             </a>
           </p>
         </div>
-        {/* <div class="statement">
-          <p class="input">rebecca.skills</p>
-          <p class="return">
-            [java, js, python, c++, react / react native, firebase, html, css]
-          </p>
-        </div> */}
         <div class="statement">
           <p class="input">rebecca.socials</p>
           <p class="return">

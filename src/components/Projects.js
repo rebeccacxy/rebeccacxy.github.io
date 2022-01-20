@@ -1,9 +1,9 @@
 import React from "react";
 import "../App.css";
-import cff from "../img/cff3.png";
-import flixie from "../img/flixie_match.png";
-import modpal from "../img/modpal.png";
-import cubey from "../img/cubey.png";
+import cff from "../assets/cff3.png";
+import flixie from "../assets/flixie_match.png";
+import modpal from "../assets/modpal.png";
+import cubey from "../assets/cubey.png";
 
 const Projects = () => {
     return (
@@ -82,8 +82,9 @@ const Projects = () => {
               class="live-demo button"
               target="_blank"
               rel="noreferrer"
+              style={{fontSize:18}}
             >
-              Live Site <i class="fas fa-external-link-alt"></i>
+              <i class="fas fa-external-link-alt"></i>
             </a>
           </div>
         </div>
@@ -136,8 +137,9 @@ const Projects = () => {
               class="live-demo button"
               target="_blank"
               rel="noreferrer"
+              style={{fontSize:18}}
             >
-              Live Site <i class="fas fa-external-link-alt"></i>
+              <i class="fas fa-external-link-alt"></i>
             </a>
           </div>
         </div>

@@ -1,13 +1,13 @@
 import React from "react";
 import "../App.css";
-import github from "../img/github.svg";
-import linkedin from "../img/linkedin.svg";
+import github from "../assets/github.svg";
+import linkedin from "../assets/linkedin.svg";
 
 const Bio = () => {
   return (
     <div>
       <div class="short-bio">
-        <p>I'm a Computer Science student at the National University of Singapore. Incoming intern at SAP.</p>
+        <p>I'm a Computer Science student at the National University of Singapore.</p>
         <p>
           I'm passionate about creating human-centered technology solutions that better people's lives.
         </p>
