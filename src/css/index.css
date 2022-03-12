@@ -105,8 +105,8 @@ code[class*='language-'],
 pre[class*='language-'] {
   color: #c5c8c6;
   text-shadow: 0 1px rgba(0, 0, 0, 0.3);
-  font-family: Inconsolata, Monaco, Consolas, 'Courier New', Courier, monospace;
-  font-size: 0.75rem;
+  font-family: monospace;
+  font-size: 0.85rem;
   direction: ltr;
   margin-bottom: 1.5rem;
   text-align: left;
@@ -114,6 +114,7 @@ pre[class*='language-'] {
   word-spacing: normal;
   word-break: normal;
   line-height: 1.5;
+  text-decoration: none !important;
 
   -moz-tab-size: 4;
   -o-tab-size: 4;
