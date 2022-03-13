@@ -2,6 +2,7 @@ module.exports = {
   siteMetadata: {
     // Site URL for when it goes live
     siteUrl: `https://rebeccacxy.github.io`,
+    pathPrefix: "/rebeccacxy.github.io",
     // Your Name
     name: 'Rebecca Chin',
     // Main Site Title
@@ -41,17 +42,19 @@ module.exports = {
     experience: [
       {
         name: 'Meta (Facebook)',
-        description: 'Incoming Software Engineer Intern, May 2022 - Aug 2022',
+        description: 'Incoming Software Engineer Intern | May 2022 - Aug 2022',
         link: 'https://about.facebook.com/',
       },
       {
         name: 'WorkClass',
-        description: 'Software Engineer Intern, Dec 2021 - Jan 2022',
+        description: 'Software Engineer Intern | Dec 2021 - Jan 2022',
         link: 'https://workclass.co/',
+        info: 'Developed and improved upon frontend and backend features of core web applications used in production by 100,000 employers and jobseekers. Automated processes for scraping logs and worked with tools that monitor their health.',
+        tech: 'Typescript, React, Gatsby, GraphQL, Cypress, Django, MySQL'
       },
       {
         name: 'Tinkertanker',
-        description: 'Software Engineer Intern, Jan 2020 - Jun 2020',
+        description: 'Software Engineer Intern | Jan 2020 - Jun 2020',
         link: 'https://tinkertanker.com/',
       },
     ],
