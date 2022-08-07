@@ -16,6 +16,7 @@ const SectionExperience = ({ experience }) => {
           link={item.link}
           info={item.info}
           tech={item.tech}
+          logo={item.logo}
         />
       ))}
     </Section>

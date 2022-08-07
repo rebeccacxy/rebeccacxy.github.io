@@ -42,14 +42,15 @@ module.exports = {
     experience: [
       {
         name: 'Meta (Facebook)',
-        description: 'Incoming Software Engineer Intern | May 2022 - Aug 2022',
+        description: 'Software Engineer Intern | May 2022 - Aug 2022',
+        info: '> Led cross-functional efforts to build features for sellers to onboard more easily into real-time selling on Facebook Pages. \n> Spearheaded an internal debugging tool for dogfooding internal pages, used by teams in the organisation.',
         link: 'https://about.facebook.com/',
       },
       {
         name: 'WorkClass',
         description: 'Software Engineer Intern | Dec 2021 - Jan 2022',
         link: 'https://workclass.co/',
-        info: 'Developed and improved upon frontend and backend features of core web applications used in production by 100,000 employers and jobseekers. Automated processes for scraping logs and worked with tools that monitor their health.',
+        info: '> Developed and improved upon frontend and backend features of core web applications used in production by 100,000 employers and jobseekers. Automated processes for scraping logs and worked with tools that monitor their health.',
         tech: 'Typescript, React, Gatsby, GraphQL, Cypress, Django, MySQL'
       },
       {
