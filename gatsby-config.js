@@ -43,7 +43,7 @@ module.exports = {
       {
         name: 'Meta (Facebook)',
         description: 'Software Engineer Intern | May 2022 - Aug 2022',
-        info: '> Led cross-functional efforts to build features for sellers to onboard more easily into real-time selling on Facebook Pages. \n> Spearheaded an internal debugging tool for dogfooding internal pages, used by teams in the organisation.',
+        info: '> Led cross-functional efforts to build features for sellers to onboard more easily into real-time selling on Facebook Pages. \n> Spearheaded an internal debugging tool for dogfooding internal pages, used and built upon by teams in the organisation.',
         link: 'https://about.facebook.com/',
       },
       {
