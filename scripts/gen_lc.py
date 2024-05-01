@@ -44,7 +44,7 @@ def main():
     qn = sys.argv[1]
     response = get_qn(qn)
     md = create_md(response["data"]["question"])
-    f = open(f"_leetcodes/{qn}.md", "w+")
+    f = open(f"_algorithms/{qn}.md", "w+")
     f.write(md)
     f.close()
 
