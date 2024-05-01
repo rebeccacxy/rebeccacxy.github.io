@@ -8,7 +8,7 @@ module.exports = {
     // Main Site Title
     title: `Rebecca Chin`,
     // Description that goes under your name in main bio
-    description: `Computer Science Undergraduate at NUS`,
+    description: `Recent CS graduate`,
     // Optional: Twitter account handle
     // author: `@rfitzio`,
     // Optional: Github account URL
@@ -16,41 +16,47 @@ module.exports = {
     // Optional: LinkedIn account URL
     linkedin: `https://www.linkedin.com/in/rcxy/`,
     // Content of the About Me section
-    about: `Interested in creating efficient and human-centered technology solutions. In my free time, I lift at the gym.`,
+    about: `Interested in creating efficient and human-centered technology solutions. In my free time (as of 2024), I'm reading textbooks and learning about language internals 📚`,
     // Optional: List your projects, they must have `name` and `description`. `link` is optional.
-    // projects: [
-    //   {
-    //     name: 'Devfolio',
-    //     description:
-    //       'A zero-config and blazing fast personal site + blog built with GatsbyJs and TailwindCSS',
-    //     link: 'https://github.com/RyanFitzgerald/devfolio',
-    //   },
-    //   {
-    //     name: 'ChromeExtensionKit',
-    //     description:
-    //       'Kit to jump-start your Chrome extension projects with a variety of battle-tested starter templates',
-    //     link: 'https://chromeextensionkit.com/?ref=devfolio',
-    //   },
-    //   {
-    //     name: 'Another Cool Project',
-    //     description:
-    //       'Lorem ipsum dolor sit amet consectetur adipisicing elit ducimus perferendis',
-    //     link: 'https://github.com/RyanFitzgerald/devfolio',
-    //   },
-    // ],
+    projects: [
+      {
+        name: 'Redis in Python',
+        description:
+          'A pure-Python implementation of Redis (a small subset of its features). I learn about event loops and the asyncio library here.',
+        link: 'https://github.com/rebeccacxy/my_redis',
+      },
+      {
+        name: 'Memory Allocation',
+        description:
+          'Implementing malloc using sbrk and brk system calls.',
+        link: 'https://github.com/rebeccacxy/my_malloc',
+      },
+    ],
     // Optional: List your experience, they must have `name` and `description`. `link` is optional.
     experience: [
       {
+        name: 'JP Morgan',
+        description: 'Software Engineer Intern (Security) | May 2023 - Aug 2023',
+        info: 'Deliver an alerting and notification system on the firm’s web risk portal. Worked closely with traders to further align requirements.',
+        link: 'https://www.jpmorgan.com/SG/en/about-us',
+      },
+      {
+        name: 'Bytedance',
+        description: 'Software Engineer Intern (Security) | Dec 2022 - Apr 2022',
+        info: 'Developed an Orchestration service that coordinates container signing operations.\nDesigned and built a DevSecOps pipeline into the team’s codebases to improve code quality and automate security testing.',
+        link: 'https://www.bytedance.com/en/',
+      },
+      {
         name: 'Meta (Facebook)',
         description: 'Software Engineer Intern | May 2022 - Aug 2022',
-        info: '> Led cross-functional efforts to build features for sellers to onboard more easily into real-time selling on Facebook Pages. \n> Spearheaded an internal debugging tool for dogfooding internal pages, used and built upon by teams in the organisation.',
+        info: 'Led cross-functional efforts to build features for sellers to onboard more easily into live shopping on Facebook.\nDeveloped an internal tool for dogfooding internal pages, that was used and built upon by other teams.',
         link: 'https://about.facebook.com/',
       },
       {
         name: 'WorkClass',
         description: 'Software Engineer Intern | Dec 2021 - Jan 2022',
         link: 'https://workclass.co/',
-        info: '> Developed and improved upon frontend and backend features of core web applications used in production by 100,000 employers and jobseekers. Automated processes for scraping logs and worked with tools that monitor their health.',
+        info: 'Developed and improved upon frontend and backend features of core web applications used by employers and jobseekers. Automated processes for scraping logs and worked with tools that monitor their health.',
         tech: 'Typescript, React, Gatsby, GraphQL, Cypress, Django, MySQL'
       },
       {

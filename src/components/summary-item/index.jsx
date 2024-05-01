@@ -1,6 +1,5 @@
 import { Link } from 'gatsby';
 import React from 'react';
-import meta from '../../images/meta_logo.gif';
 
 const classes = {
   wrapper: 'mb-6',
@@ -33,7 +32,6 @@ const SummaryItem = ({
         }`}
       >
         {link ? linkContent : name}
-        {name === 'Meta (Facebook)' ? <img src={meta} width={25} height={25} style={{float: "left", marginTop: 5, marginRight: 5}} /> : ""}
       </h3>
       <p className={classes.description}>{description}</p>
       <p className={classes.info}>{info}</p>
