@@ -1,0 +1,17 @@
+# Authors
+
+Billy Rick:
+  name        : "Rebecca Chin"
+  bio         : "Computer Science at NUS"
+  avatar      : "/assets/images/logo.png"
+  links:
+    - label: "Email"
+      icon: "fas fa-fw fa-envelope-square"
+      url: "mailto:rebeccachinxy@gmail.com"
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/rebeccacxy"
+    - label: "Twitter"
+      icon: "fab fa-fw fa-twitter-square"
+      url: "https://twitter.com/extravagantman"
+
