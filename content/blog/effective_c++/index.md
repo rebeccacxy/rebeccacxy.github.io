@@ -79,7 +79,6 @@ If const appears to the left of *, what's pointed to is constant. If const appea
   - can be abused to make the object visibly change when it logically should not — only declare members mutable if they don't form part of the externally visible state
 ```cpp
 mutable bool lengthIsValid;
-
 std::size_t length() const {
 	if (!lengthIsValid) {
 		lengthIsValid = true; // ok
