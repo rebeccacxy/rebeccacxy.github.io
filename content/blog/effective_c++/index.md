@@ -86,6 +86,7 @@ std::size_t length() const {
 	}
 }
 ```
+
 - avoid code duplication in const and non-const member functions by casting non-const `*this` to `const *this`
 
 ## Item 4: Ensure objects are initialized before they’re used
