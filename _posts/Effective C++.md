@@ -268,5 +268,259 @@ Limitations: Only uses `delete` not `delete[]` in destructor
 - Limitations: can’t break cyclic references —> shared ref count never becomes 0
   - Solution: use weak pointer instead
 
-## Item 14: Think carefully about copying behaviour in resource-managing classes
-TODO
+Item 14: Think carefully about copying behaviour in resource-managing classes
+If one wants to implement their own RAII, need to handle copying behaviour
+- Prohibit copying
+  - For mutex, resource (Lock) should not be copied —> declare copying operations private
+  ```cpp
+  class Lock : private Uncopyable // prohibit copying
+  ```
+- Reference-count the underlying resource
+  - change the type to a `shared_ptr`
+    - but `shared_ptr` default behaviour deletes the object when reference count goes to zero. 
+    - If object is a Mutex, want to unlock it, not delete it
+    - Instead, provide `shared_ptr` with a **deleter** function (called when ref count goes to zero —> cause `shared_ptr` to call the deleter function instead of destructor
+- Copy the underlying resource
+  - can have multiple copies of an object —> use deep copy (copy both the pointer and the memory it points to)
+- Transfer ownership of the underlying resource
+
+## Item 15: Provide access to raw resources in resource- managing classes
+To access underlying heap-based resource from an RAII object:
+- Explicit conversion
+  - provide a `raii.get()`member function to get underlying resource
+  - overloading pointer reference `operator->` — literally all smart ptr classes overload `operator->` and `operator*`
+  - safer than implicit conversion
+- Implicit conversion
+  - allow casting from raii object to the underlying resource pointer
+  - allow clients to easily use API that need the resource pointer
+    ```cpp
+    Font f;
+    operator FontHandle() const { // overload casting operator
+    	return f;
+    }
+    void doSomething(FontHandle r) {}
+    Font f;
+    doSomething(f) // implicitly casts Font to FontHandle 
+    ```
+  - Cons: can accidentally cast from Font to the underlying resource
+
+In general, explicit conversion is safer than implicit conversion, as it minimizes the chances of unintended type conversions
+
+## Item 16: Use the same form in corresponding uses of `new` and `delete`
+### What happens when you call `new`?
+1. allocate memory via operator `new`
+2. call constructors 
+3. initialize fields
+4. return pointer
+
+### What happens when you call `delete`?
+1. call destructor
+2. delete memory via operation `delete`
+
+**Heap memory layout:**
+Single object: | Object |
+Array: | n | Object | Object | Object |
+
+- `delete[]`: assumes the first `k` bytes to be size of the array, destructor will be called on the next contiguous `n` location in memory
+  - if using `[]` in `new`, must also use `[]` in matching `delete`
+- `delete:`deletes the address for the size of the array and part of the first object
+
+## Item 17: Store newed objects in smart pointers in standalone statements
+When using smart pointers, want to ensure there’s no memory leaks, by making sure no exceptions are thrown between allocating memory and calling constructors.
+
+In C++, compiler can reorder evaluations of arguments
+```cpp
+processWidget(shared_ptr<Widget>(new Widget), func());
+```
+need to perform it in the order:
+- call `new`
+- call constructor of`shared_ptr`
+- call `func()`
+
+but compiler can reorder it to:
+- call `new` 
+- call  `func()`
+- call constructor of `shared_ptr`
+If `func()` throws exception, pointer returned by`new Widget` will cause memory leak, as it won’t be stored in`shared_ptr`which should clean it up
+- Solution: use a separate statement to store `new` object in smart pointer —> guarantees no exceptions will be thrown 
+  ```cpp
+  shared_ptr<Widget> w(new Widget);
+  processWidget(w, func()); // this call won't leak
+  ```
+  - now, `new Widget` and call to `shared_ptr` constructor are in a different statement from `func()`, so compiler can’t reorder 
+
+## Item 18: Make interfaces easy to use correctly and hard to use incorrectly
+- Use strongly typed parameters
+  - eg. wrapper types to distinguish days, months, years to pass into a Date constructor
+- return `const` to prevent invalid assignment
+- return smart ptr that calls delete
+  - can define custom deleter for `shared_ptr` to prevent cross DLL problem
+
+## Item 19: Treat class design as type design
+Class design is type design. Before defining a new type, consider all the issues discussed in this Item
+eg. if defining a new derived class just to add functionality to an existing class, maybe it’s better to define non-member functions / templates
+
+## Item 20: Prefer pass-by-reference-to-const to pass-by-value
+By default, C++ passes objects to / from functions by value
+### Pass-by-value
+- Call copy constructor of base class and all its data members. Initialize function parameters with copies of the actual arguments
+- Cons:
+  - expensive operation (also need to destroy copies)
+  - Slicing problem: when derived class object is passed by value as a base class object, base class copy constructor is called
+- Exceptions:
+  - Built-in-types — same overhead as passing by reference, as same amount of data would be passed
+  - same for iterators and function objects in STL
+  - for these, pass-by-value is appropriate, as
+
+### Pass-by-reference-to-const
+- passing a pointer as an argument to the function
+- use `const` to enforce immutability on the argument
+- prevents slicing problem
+
+## Item 21: Don’t try to return a reference when you must return an object
+Object created on the stack by function:
+- Don’t return a reference to a local object, as local objects are destroyed when the function exits, and the reference that the function returns will point to an object that’s destroyed —> UB
+
+Object created on the heap by function:
+- don’t know who calls `delete` —> memory leak
+
+## Item 22: Declare data members private
+not c++ specific
+- affords fine-grained access control, allows invariants to be enforced
+- encapsulation: to easily change implementation of data member
+
+## Item 23: Prefer non-member non-friend functions to member functions
+**Drawbacks of member functions:**
+- reduces encapsulation
+- when importing a class, forced to import all utility functions instead of the necessary ones
+
+**Use non-member, non-friend functions**
+- reduces compilation dependencies
+  - put all related functions in multiple header files under a single namespace — easily extendable for more non-member non-friend functions
+```cpp
+// header “webbrowser.h” — header for class WebBrowser itself
+class WebBrowser {
+// core functionality
+};
+// header “bookmarks.h” 
+namespace WebBrowserStuff { // bookmarks convenience functions
+}
+// header “cookies.h” 
+namespace WebBrowserStuff { // cookies convenience functions
+}
+```
+
+## Item 24: Declare non-member functions when type conversions should apply to all parameters
+
+**How type conversion works:**
+- Given a type T1 and need to construct an object of type T2 from object of type T1, type conversion works if there is conversion from `T1 -> T2`
+- If T2 has a constructor that accepts a T1 object `T2(T1)`, then a temporary T2 object can be constructed from T1. This allows implicit / explicit conversion from `T1 -> T2`
+- Provide T2 as an argument to the object’s constructor
+
+**How operators work:**
+- For operators (`*`, `+`…), the compiler first looks for valid operator overloads within the class scope (member operators) and then in the namespace scope (non-member operators) if a matching member operator is not found
+- type conversion will be used if the operator is not `explicit`
+
+**Implicit type conversion**
+- parameters are eligible for implicit type conversion only if they are listed in the parameter list
+- for operators that should perform implicit type conversion, use non-member functions so that both the parameters can be converted
+
+## Item 25: Consider support for a non-throwing swap
+As long as types support copying (copy constructor, copy assignment operator), default swap will work
+- but inefficient, copies 3 objects 
+```cpp 
+// std::swap
+templace<typename T> 
+void swap(T& a, T& b) {
+	T temp(a);
+	a = b;
+	b = temp;
+}
+```
+
+**More efficient custom swap:**
+1. Public swap member function 
+   - should never throw an exception — as many operations rely on swap operations to prevent memory leak
+2. Non-member swap in same namespace as class / tempalate. Have it call your swap member function
+   - can throw exceptions — copy constructor and copy assignment in default swap are allowed to throw exceptions
+3. If writing a class, specialize `std::swap` for your class. Have it call your swap member function
+
+## Item 26: Postpone variable definitions as long as possible
+- defer variable definition as much as possible
+  - avoid unnecessary default constructions if exception is thrown / function returns before it is used
+  - ```cpp
+    string s;
+    if (...) throw exception;
+    // define here instead
+    ```
+- don’t define a variable with default constructor then assign it to a new value later
+  - prevents an extra call to the constructor and copy assignment — better to just have a single call to the copy constructor
+  - ```cpp
+    // extra call to constructor and copy assignment
+    string s;
+    s = "hello";
+    f(s);
+    
+    // vs
+    string s("hello") // single call to copy constructor
+    ```
+
+## Item 27: Minimize casting
+Types of casting:
+- C-style: `(T) expression`
+- Function-style: `T(expression)`
+- C++ style:
+  - `const_cast<T>(expression)` — only cast that can cast away constness of objects
+  - `dynamic_cast<T>(expression)` — for safe downcasting, on what you believe to be a derived class object, but only have a pointer / reference-to-base 
+  - `reinterpret_cast<T>(expression)` — low-level, eg. casting a pointer to an int. Don’t use this if possible
+  - `static_cast<T>(expression)` — for forcing implicit conversions (eg. non-const to const, int to double)
+- Prefer C++ style casts to the first two casts — easier to see, more specific 
+
+Cons of casting:
+- Casting a pointer of derived class to base class can cause overhead of getting the base class pointer
+  - In C++ (not applicable to other langauges), an object of type Derived can have more than 1 address (ie. address pointed to by a `Base*` ptr and address pointed to by a `Derived*` ptr
+  ```cpp
+  Derived d;
+  Base* b = &d; // implicitly converts Derived* --> Base*
+  // b != d
+  ```
+- For `static_cast`, when casting derived object to base object, will create a temporary copy of the base object, then invoke the function on the copy
+  - Solution: Eliminate the cast. Instead, call the base class function directly `Base::f()` in the derived class function
+- `dynamic_cast` is slow, under the hood it performs string matching to class name. Instead of `dynamic_class`:
+  1. Use containers that store pointers (smart pointers) to derived class objects directly, to eliminate the need to manipulate such objects through base class interfaces
+  2. Use a base class interface to provide virtual functions in the base class
+
+## Item 28: Avoid returning “handles” to object internals
+Returning references, pointers, and iterators can potentially compromise an object’s encapsulation. 
+- can lead to `const` member function that allow an object’s state to be modified
+- can lead to dangling handles, if a temporary object is created and only the handle is assigned to a variable —> temp object is destroyed but handle left dangling
+
+## Item 29: Strive for exception-safe code
+An exception-safe function will:
+- leak no resources
+- don’t allow data structures to become corrupted
+
+Must offer one of the 3 guarantees:
+- Basic guarantee: if an exception is thrown, everything in the program remains in a valid state
+- Strong guarantee: if an exception is thrown, state of the program is unchanged
+- Nothrow guarantee: never throw exceptions
+
+## Item 30: Understand the ins and outs of inlining
+Inlining is a request to compilers, implicitly or explicitly, to replace each call of that functionw ith its code body
+- is a compile-time activity, so usually in header files
+
+Implicit: define a function inside a class definition
+Explicit: use `inline` keyword
+
+Won’t work on complicated functions (contains loops / recursive), most virtual functions (since they wait until runtime to determine what function to call)
+
+> Use inlining on small, frequently called  functions
+
+**Pros**
+- for small functions, can lead to smaller object code and higher instruction cache hit rate
+
+**Cons**
+- increases space overhead of programs 
+  - even with virtual memory, large functions can lead to additional paging, reduced instruction cache hit rate, poor performance
+- constructors and destructors have long functions to construct data members under the hood — not ideal for inlining
+- if a library uses inline function `f`, all clients that use `f` must recompile, instead of just relinking a non-inline function
