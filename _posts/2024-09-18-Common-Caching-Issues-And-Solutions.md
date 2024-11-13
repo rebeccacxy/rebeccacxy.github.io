@@ -87,7 +87,7 @@ Challenge: after splitting keys to different cache servers, some server has high
     - customized hotkey checker function (called everytime for every key):
       - for dynamically-detected hotkeys in flash sale, can asynchronously call API to get list of flash sale products, treat these products as hotkeys
       - note: if need to call other services for hotkey checker, should async call the services instead of making RPC call everytime for every key
-      - pros: easy to implement, feature supported in ucache library
+      - pros: easy to implement
       - cons: can’t always detect which cache keys are hot, single application instance not enough data to detect hotkey of whole service
   - **server-side hotkey detection:**
     - server side can detect which keys are hot at proxy (load balancer) layer for the whole service
@@ -196,7 +196,7 @@ Challenge: in-memory cache not aware of remote cache data change, so data in-mem
 - if set **higher expiration time** for higher hit rate, lower data consistency & more memory usage
 - if use **update cache strategy** for higher hit rate, data inconsistency issue in parallel update cases
 
-**Solution 1: add header to cache_item to include more metadata
+**Solution 1: add header to cache_item to include more metadata**
 
 - hard timeout: if reach, remove items from cache (same as expiration)
 - soft timeout: if reach, fetch data from database and refresh data in cache
@@ -226,10 +226,6 @@ Bad idea: if cache down, pass traffic to read from DB
 <img src="/assets/images/SPOF.png" alt="SPOF" width="450"/>
 
 **Solution:** create more replicas for cache servers
-- memcached HA: self controlled traffic
-  - read from random replica node
-  - set / del apply to all replicanodes
-  - this feature already supported in memcached HA & ucache
 - proxy layer automatic failover to replica nodes
   - process is transparent to client
 
@@ -250,7 +246,6 @@ challenge: occurs when several goroutines attempt to access a same cache_key in 
 - For handling cache stampede across instances, use distributed lock to ensure that only 1 instance has permission to query from DB
     - Cons: key size increases, performance can worsen if blindly use it
     - goal is mostly protect DB, so suitable if DB is cold-storage DB, which can take seconds / minutes to execute the query
-    - cache stampede handling feature supported in ucache
 
 Follow up: previous idea can reduce traffic for parallels getting a key. If there are parallels getting multiple keys, DB can still be overloaded
 
